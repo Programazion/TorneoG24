@@ -18,6 +18,7 @@ namespace Torneo.App.Consola
                 Console.WriteLine("4. Mostrar municipios");
                 Console.WriteLine("5. Mostrar DTs");
                 Console.WriteLine("6. Mostrar Equipos");/// Insertar la opción Jugador - posición Partido
+                Console.WriteLine("7. Mostrar Partidos");/// Se insertó Partidos
                 Console.WriteLine("0. Salir");
                 Console.WriteLine("Seleccione la opcion deseada");
                 opcion = Int32.Parse(Console.ReadLine());

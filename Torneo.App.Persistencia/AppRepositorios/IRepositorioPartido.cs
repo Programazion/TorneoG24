@@ -3,7 +3,9 @@ namespace Torneo.App.Persistencia
 {
     public interface IRepositorioPartido
     {
-        public Partido AddPartido(Partido partido);
-        ///, DataTime FechaHora, Local Equipo, int Marcador, Visitante Equipo);
+        public Partido AddPartido(int Id , DateTime FechaHora, Local Equipo, int MarcadorLocal, Visitante Equipo, int MarcadorVisitante);     
+    
+         public IEnumerable<Partido> GetAllPartidos();///Añadí GetAllPartidos
+            
     }
 }
