@@ -10,7 +10,7 @@ namespace Torneo.App.Persistencia
             var fechaHoraEncontrado = _dataContext.DateTime.Find(FechaHora);//Revisar 
             Partido.FechaHora = fechaHoraEncontrado; //Revisar
             var equipoInsertado = _dataContext.Partidos.find(Local); //Revisar 
-            Partido.Local = _dataContext.Partido.Find(Local); //Revisar
+            Equipo Partido = _dataContext.Partido.Find(Local); //Revisar este cambio 
             var marcadorLocalInsertado = _dataContext.Partidos.Find(MarcadorLocal);///Revisar 
             Partido.MarcadorLocal = marcadorLocalInsertado; ///Revisar
             var marcadorVisitanteInsertado = _dataContext.Partidos.Find(MarcadorVisitante);///Revisar 
