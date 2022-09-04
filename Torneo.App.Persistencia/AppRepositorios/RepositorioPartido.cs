@@ -1,3 +1,4 @@
+using System;
 using Microsoft.EntityFrameworkCore;///Se añade RepositorioPartido
 using Torneo.App.Dominio;
 namespace Torneo.App.Persistencia
@@ -5,17 +6,25 @@ namespace Torneo.App.Persistencia
     public class RepositorioPartido : IRepositorioPartido
     {
         private readonly DataContext _dataContext = new DataContext(); /// Se sumaron los parámetros
-        public Partido AddPartido(Partido Partido, int Id , DateTime FechaHora, string Local, int MarcadorLocal, string Visitante , int MarcadorVisitante)
+        public Partido AddPartido(Partido partido, int idLocal, int idVisitante)
+        ///public Partido AddPartido(Partido partido, DateTime FechaHora, Equipo Local, int MarcadorLocal, Equipo Visitante , int MarcadorVisitante)
         {
-            var fechaHoraEncontrado = _dataContext.DateTime.Find(FechaHora);//Revisar 
-            Partido.FechaHora = fechaHoraEncontrado; //Revisar
-            var equipoInsertado = _dataContext.Partidos.find(Local); //Revisar 
+             DateTime FechaHora = _dataContext.DateTime.Find(FechaHora);//Revisar 
+             Partido.FechaHora = FechaHora; //Revisar
+
+            var equipoLocalEncontrado = _dataContext.Partidos.Find(Local); //Revisar 
             Equipo Partido = _dataContext.Partido.Find(Local); //Revisar este cambio 
-            var marcadorLocalInsertado = _dataContext.Partidos.Find(MarcadorLocal);///Revisar 
-            Partido.MarcadorLocal = marcadorLocalInsertado; ///Revisar
-            var marcadorVisitanteInsertado = _dataContext.Partidos.Find(MarcadorVisitante);///Revisar 
-            Partido.MarcadorVisitante = marcadorVisitanteInsertado; ///Revisar
-            var PartidoInsertado = _dataContext.Partidos.Add(Partido); 
+
+            /*var marcadorLocalEncontrado = _dataContext.Partidos.Find(MarcadorLocal);///Revisar 
+            Partido.MarcadorLocal = marcadorLocalEncontrado; ///Revisar*/
+
+            var equipoVisitanteEncontrado = _dataContext.Partidos.Find(Visitante); //Revisar 
+            Equipo Partido = _dataContext.Partido.Find(Local); //Revisar este cambio
+
+            /*var marcadorVisitanteEncontrado = _dataContext.Partidos.Find(MarcadorVisitante);///Revisar 
+            Partido.MarcadorVisitante = marcadorVisitanteEncontrado; ///Revisar*/
+
+            var PartidoInsertado = _dataContext.Partidos.Add(partido);
             _dataContext.SaveChanges();
             return PartidoInsertado.Entity;
         }
