@@ -5,17 +5,17 @@ namespace Torneo.App.Persistencia
     public class RepositorioPartido : IRepositorioPartido
     {
         private readonly DataContext _dataContext = new DataContext(); /// Se sumaron los parámetros
-        public Partido AddPartido(Partido Partido, int Id , DateTime FechaHora, Equipo Local, int MarcadorLocal, Equipo Visitante , int MarcadorVisitante)
+        public Partido AddPartido(Partido Partido, int Id , DateTime FechaHora, string Local, int MarcadorLocal, string Visitante , int MarcadorVisitante)
         {
             var fechaHoraEncontrado = _dataContext.DateTime.Find(FechaHora);//Revisar 
             Partido.FechaHora = fechaHoraEncontrado; //Revisar
-            var equipoInsertado = _dataContext.Equipo.find(Local); //Revisar 
-            Partido.Local = _dataContext.Equipo.Find(Local); //Revisar
-            var marcadorLocalInsertado = _dataContext.Partido.Find(MarcadorLocal);///Revisar 
+            var equipoInsertado = _dataContext.Partidos.find(Local); //Revisar 
+            Partido.Local = _dataContext.Partido.Find(Local); //Revisar
+            var marcadorLocalInsertado = _dataContext.Partidos.Find(MarcadorLocal);///Revisar 
             Partido.MarcadorLocal = marcadorLocalInsertado; ///Revisar
-            var marcadorVisitanteInsertado = _dataContext.Partido.Find(MarcadorVisitante);///Revisar 
+            var marcadorVisitanteInsertado = _dataContext.Partidos.Find(MarcadorVisitante);///Revisar 
             Partido.MarcadorVisitante = marcadorVisitanteInsertado; ///Revisar
-            var PartidoInsertado = _dataContext.Partido.Add(Partido); 
+            var PartidoInsertado = _dataContext.Partidos.Add(Partido); 
             _dataContext.SaveChanges();
             return PartidoInsertado.Entity;
         }
