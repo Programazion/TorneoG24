@@ -8,7 +8,7 @@ namespace Torneo.App.Consola
         private static IRepositorioDT _repoDT = new RepositorioDT();
         private static IRepositorioEquipo _repoEquipo = new RepositorioEquipo(); ///Añadir Jugador y partido
 
-        static void Main(string[] args) ///Añadir Menú do WHile 
+        static void Main(string[] args) ///Añadir Menú do While 
         {
              int opcion = 0;
             do{
@@ -39,8 +39,13 @@ namespace Torneo.App.Consola
                         GetAllDTs();
                         break;
                     case 6:
-                        GetAllEquipos();///Añadir la opción GETAllEquipos();
-                        break;          ///Break;
+                        GetAllEquipos();
+                        break;          
+
+                    case 7: 
+                        GetAllPartidos();///Se añadió la opción GETAllPartidos();
+                        break;
+
                     
                 }
             } while(opcion != 0);
@@ -90,6 +95,31 @@ namespace Torneo.App.Consola
             _repoEquipo.AddEquipo(equipo, idMunicipio, idDT);
         }
 
+        private static void AddPartido() ///Añadí menu Partido
+        {
+            Console.WriteLine("Escriba la fecha del partido");
+            DateTime fechaHora = Console.ReadLine();
+            Console.WriteLine("Escriba el id del equipo local");
+            int idLocal = Int32.Parse(Console.ReadLine());
+            Console.WriteLine("Escriba el id del equipo visitante");
+            int idVisitante = Int32.Parse(Console.ReadLine());
+            Console.WriteLine("Escriba el marcador del equipo Local");
+            int marcadorLocal = Int32.Parse(Console.ReadLine());
+            Console.WriteLine("Escriba el marcador del equipo Local");
+            int marcadorVisitante = Int32.Parse(Console.ReadLine());
+
+            var partido = new Partido
+            {
+                FechaHora = fechaHora,
+                IdLocal = local,
+                IdVisitante = idvisitante,
+                MarcadorLocal = marcadorLocal,
+                MarcadorVisitante = marcadorVisitante,
+
+            };
+            _repoEquipo.AddPartido(fechaHora, idlocal, idvisitante, marcadorLocal, marcadorVisitante);
+        } 
+
         private static void GetAllMunicipios()
         {
             foreach (var municipio in _repoMunicipio.GetAllMunicipios())
@@ -114,6 +144,16 @@ namespace Torneo.App.Consola
                 + " " + equipo.Municipio.Nombre + " " + equipo.DirectorTecnico.Nombre);
             }
         }
+
+        ///Se añade Método GeAllPartidos() Daniel Sánchez
+        private static void GetAllPartidos()
+        {
+            foreach (var partido in _repoPartido.GetAllPartidos())
+            {
+                Console.WriteLine(fechaHora.DateTime + "DD-MM-YYYY" + local.Id + " " + marcadorLocal.equipo + " " + visitante.Id + " " + marcadorVisitante.equipo + " "  );
+            }
+        }
+
 
 
     }
