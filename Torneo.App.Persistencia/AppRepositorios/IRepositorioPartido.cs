@@ -1,3 +1,4 @@
+using System;
 using Torneo.App.Dominio; /// Se añade IRepositorioPartido
 namespace Torneo.App.Persistencia
 {

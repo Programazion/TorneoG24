@@ -9,7 +9,7 @@ namespace Torneo.App.Persistencia
         public Partido AddPartido(Partido partido, int idLocal, int idVisitante)
         ///public Partido AddPartido(Partido partido, DateTime FechaHora, Equipo Local, int MarcadorLocal, Equipo Visitante , int MarcadorVisitante)
         {
-             DateTime FechaHora = _dataContext.DateTime.Find(FechaHora);//Revisar 
+            DateTime FechaHora = _dataContext.DateTime.Find(FechaHora);//Revisar 
              Partido.FechaHora = FechaHora; //Revisar
 
             var equipoLocalEncontrado = _dataContext.Partidos.Find(Local); //Revisar 
@@ -28,9 +28,14 @@ namespace Torneo.App.Persistencia
             _dataContext.SaveChanges();
             return PartidoInsertado.Entity;
         }
-        public IEnumerable<Partido> GetAllPartidos() ///Añadí GetAllPartidos
+       
+        public IEnumerable<Partido> GetAllPartidos()
         {
-            return _dataContext.Partidos;
+            var partidos = _dataContext.Partidos
+                .Include(e => e.Equipo)
+                .Include(e => e.Equipo)
+                .ToList();
+            return partidos;
         }
     }
 }
